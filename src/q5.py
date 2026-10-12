@@ -11,3 +11,14 @@ Example usage:
 flatten([[1, 2, 3], [4, 5, 6]])  # [1, 2, 3, 4, 5, 6]
 flatten([[1, 2], [], [], [3]])       # [1, 2, 3]
 """
+def flatten(two_d_list: list[list[int]]) -> list[int]:
+    return [value for row in two_d_list for value in row]
+
+if __name__ == "__main__":
+    print(flatten([[1, 2, 3], [4, 5, 6]]))  # Output: [1, 2, 3, 4, 5, 6]
+    print(flatten([[1, 2], [], [], [3]]))       # Output: [1, 2, 3]
+
+    grid = [[1, 2], [3, 4]]
+    FLAT = flatten(grid)
+    print(FLAT)  # Output: [1, 2, 3, 4]
+    print(grid)  # Output: [[1, 2], [3, 4]] (unchanged)

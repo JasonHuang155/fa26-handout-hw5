@@ -37,3 +37,20 @@ class WordPair:
         """
         self.old_word = old_word
         self.new_word = new_word
+
+def replace_word(sentence: str, *word_pairs: WordPair) -> str:
+    words = sentence.split()
+
+    for pair in word_pairs:
+        words = [pair.new_word if word == pair.old_word else word for word in words]
+
+    return ' '.join(words)
+
+if __name__ == "__main__":
+    # Example usage
+    print(replace_word("drums drums guitar drums", WordPair("drums", "piano")))
+    print(replace_word(
+        "drums drums guitar drums", WordPair("drums", "piano"), WordPair("guitar", "violin")))
+    print(replace_word(
+        "drums drums guitar drums", WordPair("drums", "piano"), WordPair("piano", "violin")))
+    print(replace_word("drums drums guitar drums"))

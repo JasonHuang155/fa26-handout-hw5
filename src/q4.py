@@ -18,3 +18,18 @@ remove_middle("elephant", 2, 5)  # "elant"
 remove_middle("elephant", 2, 6)  # "elnt"
 remove_middle("elephant", 0, 100)  # ""
 """
+
+def remove_middle(text: str, start: int, end: int) -> str:
+    start = max(start, 0)
+
+    if start > end:
+        return text
+    return text[:start] + text[end:]
+
+if __name__ == "__main__":
+    print(remove_middle("elephant", 2, 5))    # elant
+    print(remove_middle("elephant", 2, 6))    # elnt
+    print(remove_middle("elephant", 0, 100))  # (empty string)
+    print(remove_middle("elephant", -3, 2))   # ephant
+    print(remove_middle("elephant", 20, 30))  # elephant
+    print(remove_middle("elephant", 5, 2))    # elephant

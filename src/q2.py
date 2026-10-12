@@ -20,3 +20,27 @@ sum_last_n_floors([Building("A", 3), Building("B", 5), Building("C", 2)], 1) -> 
 sum_last_n_floors([Building("A", 3), Building("B", 5), Building("C", 2)], 3) -> 10
 sum_last_n_floors([Building("A", 3), Building("B", 5), Building("C", 2)], 0) -> 0
 """
+
+class Building:
+
+    def  __init__(self, name: str, floors: int):
+        self.name = name
+        self.floors = floors
+
+    def __eq__(self, other: object) -> bool:
+        if not isinstance(other, Building):
+            return NotImplemented
+        return self.name == other.name and self.floors == other.floors
+
+def sum_last_n_floors(buildings: list[Building], n: int) -> int:
+    if n <= 0:
+        return 0
+    return sum(building.floors for building in buildings[-n:])
+
+if __name__ == "__main__":
+    BUILDINGS = [Building("A", 3), Building("B", 5), Building("C", 2)]
+    print(sum_last_n_floors(BUILDINGS, 2))  # Output: 7
+    print(sum_last_n_floors(BUILDINGS, 1))  # Output: 2
+    print(sum_last_n_floors(BUILDINGS, 3))  # Output: 10
+    print(sum_last_n_floors(BUILDINGS, 0))  # Output: 0
+    print(Building("A", 3) == Building("A", 3))  # Output: True
